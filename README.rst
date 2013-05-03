@@ -8,6 +8,7 @@ Requirements
 ------------
 
 * Python 2.5 or later
+* Cython
 * Libinjection
 
 
