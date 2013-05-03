@@ -29,5 +29,4 @@ License information
 
 Copyright (C) 2013 Angelo Dell'Aera <buffer@antifork.org>
 
-License: GNU General Public License, version 2 or later; see COPYING.txt
-         included in this archive for details.
+License: GNU General Public License, version 2 or later; see COPYING.txt included in this archive for details.
