@@ -25,14 +25,16 @@ __version__ = '0.0.1'
 cdef bint fn(const_char_ptr arg):
     return True
 
-cdef class SQLInjection:
-    def __cinit__(self):
+
+class SQLiDetector():
+    def __init__(self):
         pass
 
-    def run(self, linebuf, length):
-        cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
+    def detect_pattern(self, input):
+        return is_sqli_pattern(input)
 
-        return is_sqli(sfp,
-                       linebuf, 
-                       length,
-                       <ptr_fingerprints_fn>fn)
+
+    def detect_sqli(self, input):
+        cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
+        length = len(input)
+        return is_sqli(sfp, input, length, self.detect_pattern(input))
