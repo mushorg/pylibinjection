@@ -46,10 +46,6 @@ cdef extern from "stdlib.h":
     void *malloc(size_t)
 
 
-cdef extern from "sqli_normalize.h":
-    size_t sqli_qs_normalize(char *, size_t)
-
-
 cdef extern from "sqlparse.h":
     ctypedef struct c_stoken_t "stoken_t":
        char _type
@@ -75,4 +71,5 @@ cdef extern from "sqlparse.h":
         int             reason
 
     ctypedef bint (*ptr_fingerprints_fn)(const_char_ptr)
+
     bint is_sqli(c_sfilter *, const_char_ptr, size_t, ptr_fingerprints_fn)

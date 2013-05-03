@@ -21,6 +21,7 @@ cimport pylibinjection
 
 __version__ = '0.0.1'
 
+
 cdef bint fn(const_char_ptr arg):
     return True
 
@@ -31,8 +32,7 @@ cdef class SQLInjection:
     def run(self, linebuf, length):
         cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
 
-        length = sqli_qs_normalize(linebuf, length)
-        return is_sqli(sfp, 
+        return is_sqli(sfp,
                        linebuf, 
                        length,
                        <ptr_fingerprints_fn>fn)
