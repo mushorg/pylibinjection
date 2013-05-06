@@ -22,19 +22,13 @@ cimport pylibinjection
 __version__ = '0.0.1'
 
 
-cdef bint fn(const_char_ptr arg):
-    return True
+
+cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
+
+def detect_pattern(input):
+    return is_sqli_pattern(input)
 
 
-class SQLiDetector():
-    def __init__(self):
-        pass
-
-    def detect_pattern(self, input):
-        return is_sqli_pattern(input)
-
-
-    def detect_sqli(self, input):
-        cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
-        length = len(input)
-        return is_sqli(sfp, input, length, self.detect_pattern(input))
+def detect_sqli(input):
+    length = len(input)
+    return is_sqli(sfp, input, length, <ptr_fingerprints_fn>is_sqli_pattern)
