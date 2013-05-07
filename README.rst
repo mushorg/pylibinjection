@@ -8,7 +8,7 @@ Requirements
 ------------
 
 * Python 2.5 or later
-* Cython
+* gcc
 * Libinjection
 
 
@@ -24,6 +24,14 @@ Installation
     $ sudo python setup.py build
     $ sudo python setup.py install
 
+Usage
+-----
+
+::
+
+    $ python
+    >>> import pylibinjection
+    >>> pylibinjection.detect_sqli("admin;--")
 
 License information
 -------------------

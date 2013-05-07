@@ -7,8 +7,8 @@ sourcefiles = ["src/pylibinjection.c", "/opt/libinjection/c/sqlparse.c"]
 
 setup(
     name="pylibinjection",
-    packages=[],
-    version="0.1.0",
+    packages=["src"],
+    version="0.1.1",
     description="Libinjection Python wrapper",
     url="https://github.com/glastopf/pylibinjection",
     author="Angelo Dell'Aera",

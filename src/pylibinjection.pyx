@@ -20,7 +20,7 @@
 cimport pylibinjection
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 cdef c_sfilter * sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
