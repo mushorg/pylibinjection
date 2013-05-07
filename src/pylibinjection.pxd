@@ -47,9 +47,7 @@ cdef extern from "stdlib.h":
 
 
 cdef extern from "sqli_fingerprints.h":
-    ctypedef bint (*ptr_fingerprints_fn)(const_char_ptr)
-
-    bint is_sqli_pattern(const_char_ptr)
+    bint is_sqli_pattern(const_char_ptr input)
 
 
 cdef extern from "sqlparse.h":
@@ -78,4 +76,4 @@ cdef extern from "sqlparse.h":
 
     ctypedef bint (*ptr_fingerprints_fn)(const_char_ptr)
 
-    bint is_sqli(c_sfilter *, const_char_ptr, size_t, ptr_fingerprints_fn)
+    bint is_sqli(c_sfilter * sfilter, const_char_ptr input, size_t length, ptr_fingerprints_fn fingerprint)

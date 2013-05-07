@@ -21,14 +21,19 @@ cimport pylibinjection
 
 __version__ = '0.0.1'
 
+cdef c_sfilter * sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
+
+def detect_pattern(data):
+    return is_sqli_pattern(data)
 
 
-cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
-
-def detect_pattern(input):
-    return is_sqli_pattern(input)
-
-
-def detect_sqli(input):
-    length = len(input)
-    return is_sqli(sfp, input, length, <ptr_fingerprints_fn>is_sqli_pattern)
+def detect_sqli(data):
+    length = len(data)
+    ret = dict()
+    sqli = is_sqli(sfp, data, length, <ptr_fingerprints_fn>is_sqli_pattern)
+    ret["sqli"] = sqli
+    ret["tokens"] = sfp.pat
+    ret["delim"] = sfp.delim
+    ret["reason"] = sfp.reason
+    free(sfp)
+    return ret
