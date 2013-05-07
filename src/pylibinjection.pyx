@@ -19,12 +19,11 @@
 
 cimport pylibinjection
 
-__version__ = '0.0.1'
+
+__version__ = '0.1.0'
+
 
 cdef c_sfilter * sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
-
-def detect_pattern(data):
-    return is_sqli_pattern(data)
 
 
 def detect_sqli(data):

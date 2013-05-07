@@ -1,17 +1,16 @@
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Distutils import build_ext
 
 
-sourcefiles = ['src/pylibinjection.pyx', "/opt/libinjection/c/sqlparse.c"]
+sourcefiles = ["src/pylibinjection.c", "/opt/libinjection/c/sqlparse.c"]
 
 
 setup(
     name="pylibinjection",
     packages=[],
-    version="0.1",
+    version="0.1.0",
     description="Libinjection Python wrapper",
-    url="",
+    url="https://github.com/glastopf/pylibinjection",
     author="Angelo Dell'Aera",
     author_email="angelo.dellaera@honeynet.org",
     classifiers=[
@@ -24,12 +23,10 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Security",
     ],
-    cmdclass={'build_ext': build_ext},
     ext_modules=[Extension("pylibinjection",
                            sourcefiles,
                            include_dirs=["/opt/libinjection/c"],
                            library_dirs=["/opt/libinjection/c"],
-                           #libraries=["is_sqli"]
                            )
     ],
 )
