@@ -26,8 +26,10 @@ def detect_sqli(linebuf):
     cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
     length = len(linebuf)
     res = dict()
-    res["sqli"] = is_sqli(sfp, linebuf, length, <ptr_fingerprints_fn>is_sqli_pattern)
+    res["sqli"] = libinjection_is_sqli(sfp, linebuf, length)
     res["tokens"] = sfp.pat
+    res["fprint"] = libinjection_sqli_check_fingerprint(sfp)
     res["reason"] = sfp.reason
     res["delim"] = sfp.delim
+    #res["vec"] = sfp.tokenvec
     return res

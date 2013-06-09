@@ -2,7 +2,8 @@ from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
 
-sourcefiles = ['src/pylibinjection.pyx', '/opt/libinjection/c/sqlparse.c']
+sourcefiles = ['src/pylibinjection.pyx',
+               '/opt/libinjection/c/libinjection_sqli.c']
 
 setup(
     name="pylibinjection",

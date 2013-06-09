@@ -46,14 +46,19 @@ cdef extern from "stdlib.h":
     void *malloc(size_t)
 
 
-cdef extern from "sqli_fingerprints.h":
-    bint is_sqli_pattern(const_char_ptr input)
+cdef extern from "libinjection.h":
+    bint libinjection_sqli_check_fingerprint(const_char_ptr input)
 
 
-cdef extern from "sqlparse.h":
+cdef extern from "libinjection.h":
     ctypedef struct c_stoken_t "stoken_t":
-       char _type
-       char val[32]
+        char    _type
+        char    str_open
+        char    str_close
+        size_t  pos
+        size_t  len
+        int     count
+        char    val[32]
 
     ctypedef struct c_sfilter "sfilter":
         const_char_ptr  s
@@ -75,4 +80,14 @@ cdef extern from "sqlparse.h":
         int             reason
 
     ctypedef bint (*ptr_fingerprints_fn)(const_char_ptr)
-    bint is_sqli(c_sfilter *, const_char_ptr, size_t, ptr_fingerprints_fn)
+    bint libinjection_is_sqli(c_sfilter *,
+                              const_char_ptr,
+                              size_t,
+    )
+    char libinjection_sqli_fingerprint(c_sfilter *,
+                                       const_char_ptr,
+                                       size_t,
+                                       char,
+                                       int
+    )
+    bint libinjection_sqli_check_fingerprint(c_sfilter *)
