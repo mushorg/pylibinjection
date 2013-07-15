@@ -63,26 +63,36 @@ cdef extern from "libinjection.h":
     ctypedef struct c_sfilter "sfilter":
         const_char_ptr  s
         size_t          slen
+
+        #ptr_lookup_fn  lookup
+        #void*          userdata
+
+        int             flags
         size_t          pos
-        bint            in_comment
 
-        c_stoken_t      syntax_current
-        c_stoken_t      syntax_last
-        c_stoken_t      syntax_comment
+        c_stoken_t      tokenvec[6]
+        c_stoken_t      current
+        char            fingerprint[6]
 
-        c_stoken_t      fold_current
-        c_stoken_t      fold_last
-        int             fold_state
-
-        c_stoken_t      tokenvec[5]
-        char            pat[6]
-        char            delim
         int             reason
+        int             stats_comment_ddw
+        int             stats_comment_ddx
+        int             stats_comment_c
+        int             stats_comment_hash
+        int             stats_folds
+        int             stats_tokens
 
     ctypedef bint (*ptr_fingerprints_fn)(const_char_ptr)
+
+    void libinjection_sqli_init(c_sfilter *,
+                                const_char_ptr,
+                                size_t,
+                                int,
+    )
+
     bint libinjection_is_sqli(c_sfilter *,
-                              const_char_ptr,
-                              size_t,
+                              #const_char_ptr,
+                              #size_t,
     )
     char libinjection_sqli_fingerprint(c_sfilter *,
                                        const_char_ptr,

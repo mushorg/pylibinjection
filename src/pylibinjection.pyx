@@ -19,17 +19,20 @@
 
 cimport pylibinjection
 
-__version__ = '0.1.2'
+__version__ = '0.2.1'
 
 
 def detect_sqli(linebuf):
     cdef c_sfilter *sfp = <c_sfilter *>malloc(sizeof(c_sfilter))
     length = len(linebuf)
     res = dict()
-    res["sqli"] = libinjection_is_sqli(sfp, linebuf, length)
-    res["tokens"] = sfp.pat
+    libinjection_sqli_init(sfp, linebuf, length, 1)
+    res["sqli"] = libinjection_is_sqli(sfp)
+    #res["tokens"] = sfp.pat
     res["fprint"] = libinjection_sqli_check_fingerprint(sfp)
     res["reason"] = sfp.reason
-    res["delim"] = sfp.delim
-    #res["vec"] = sfp.tokenvec
+    #res["delim"] = sfp.delim
+    #res["current"] = sfp.current
+    #res["tokenvec"] = sfp.tokenvec
+    res["fingerprint"] = sfp.fingerprint
     return res

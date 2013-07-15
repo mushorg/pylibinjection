@@ -31,7 +31,7 @@ Usage
 
     $ python
     >>> import pylibinjection
-    >>> pylibinjection.detect_sqli("admin;--")
+    >>> pylibinjection.detect_sqli("anything' OR 'x'='x';")
 
 License information
 -------------------
