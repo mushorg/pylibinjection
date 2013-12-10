@@ -47,10 +47,6 @@ cdef extern from "stdlib.h":
 
 
 cdef extern from "libinjection.h":
-    bint libinjection_sqli_check_fingerprint(const_char_ptr input)
-
-
-cdef extern from "libinjection.h":
     ctypedef struct c_stoken_t "stoken_t":
         char    _type
         char    str_open
@@ -100,4 +96,7 @@ cdef extern from "libinjection.h":
                                        char,
                                        int
     )
+
+
+cdef extern from "libinjection_sqli.h":
     bint libinjection_sqli_check_fingerprint(c_sfilter *)
