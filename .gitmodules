@@ -1,0 +1,3 @@
+[submodule "submodules/libinjection"]
+	path = submodules/libinjection
+	url = git://github.com/client9/libinjection.git

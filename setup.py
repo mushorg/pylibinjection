@@ -3,7 +3,7 @@ from distutils.extension import Extension
 from Cython.Distutils import build_ext
 
 sourcefiles = ['src/pylibinjection.pyx',
-               '/opt/libinjection/c/libinjection_sqli.c']
+               'submodules/libinjection/c/libinjection_sqli.c']
 
 setup(
     name="pylibinjection",
@@ -26,8 +26,8 @@ setup(
     cmdclass={'build_ext': build_ext },
     ext_modules=[Extension("pylibinjection",
                            sourcefiles,
-                           include_dirs=["/opt/libinjection/c"],
-                           library_dirs=["/opt/libinjection/c"]
+                           include_dirs=["submodules/libinjection/c"],
+                           library_dirs=["submodules/libinjection/c"]
     )
     ]
 )

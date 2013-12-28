@@ -17,12 +17,7 @@ Installation
 
 ::
 
-    $ cd /opt
-    $ sudo git clone https://github.com/client9/libinjection.git
-    $ sudo git clone https://github.com/glastopf/pylibinjection.git
-    $ cd pylibinjection/
-    $ sudo python setup.py build
-    $ sudo python setup.py install
+    $ pip install glastopf
 
 Usage
 -----
@@ -32,6 +27,15 @@ Usage
     $ python
     >>> import pylibinjection
     >>> pylibinjection.detect_sqli("anything' OR 'x'='x';")
+
+
+Developers
+-----------
+
+Pylinjection embeds lininjection as a submodule, which means that you must clone the repo with the `--recursive` option::
+
+    $ git clone --recursive https://github.com/glastopf/pylibinjection.git
+
 
 License information
 -------------------
