@@ -8,7 +8,7 @@ sourcefiles = ['src/pylibinjection.pyx',
 setup(
     name="pylibinjection",
     packages=[],
-    version="0.2.1",
+    version="0.2.2",
     description="Libinjection Python wrapper",
     url="https://github.com/glastopf/pylibinjection/",
     author="Angelo Dell'Aera",

@@ -8,8 +8,7 @@ Requirements
 ------------
 
 * Python 2.5 or later
-* gcc
-* Libinjection
+* cython
 
 
 Installation
@@ -17,7 +16,7 @@ Installation
 
 ::
 
-    $ pip install glastopf
+    $ pip install pylibinjection
 
 Usage
 -----
@@ -32,7 +31,7 @@ Usage
 Developers
 -----------
 
-Pylinjection embeds lininjection as a submodule, which means that you must clone the repo with the `--recursive` option::
+Pylinjection embeds libinjection as a submodule, which means that you must clone the repo with the `--recursive` option::
 
     $ git clone --recursive https://github.com/glastopf/pylibinjection.git
 
