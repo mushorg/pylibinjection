@@ -8,7 +8,7 @@ sourcefiles = ['src/pylibinjection.pyx',
 setup(
     name="pylibinjection",
     packages=[],
-    version="0.2.2",
+    version="0.2.3",
     description="Libinjection Python wrapper",
     url="https://github.com/glastopf/pylibinjection/",
     author="Angelo Dell'Aera",
@@ -29,5 +29,6 @@ setup(
                            include_dirs=["submodules/libinjection/c"],
                            library_dirs=["submodules/libinjection/c"]
     )
-    ]
+    ],
+    install_requires=open('requirements.txt').read().splitlines(),
 )
