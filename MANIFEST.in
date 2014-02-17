@@ -1,6 +1,7 @@
 include COPYING.txt
 include README.rst
 include src/*.p*
+include src/*.c
 include submodules/libinjection/COPYING.txt
 include submodules/libinjection/c/libinjection.h
 include submodules/libinjection/c/libinjection_sqli.c

@@ -8,7 +8,12 @@ Requirements
 ------------
 
 * Python 2.5 or later
-* cython
+* Python-dev (Python header files)
+* Optional cython
+
+::
+
+    $ apt-get install python-dev
 
 
 Installation

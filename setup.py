@@ -1,14 +1,29 @@
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Distutils import build_ext
 
-sourcefiles = ['src/pylibinjection.pyx',
-               'submodules/libinjection/c/libinjection_sqli.c']
+try:
+    from Cython.Distutils import build_ext
+    has_cython = True
+except ImportError:
+    has_cython = False
+
+
+if has_cython:
+    sourcefiles = [
+        'src/pylibinjection.pyx',
+        'submodules/libinjection/c/libinjection_sqli.c'
+    ]
+    cmdclass = {'build_ext': build_ext}
+else:
+    sourcefiles = [
+        'src/pylibinjection.c',
+        'submodules/libinjection/c/libinjection_sqli.c']
+    cmdclass = {}
 
 setup(
     name="pylibinjection",
     packages=[],
-    version="0.2.3",
+    version="0.2.4",
     description="Libinjection Python wrapper",
     url="https://github.com/glastopf/pylibinjection/",
     author="Angelo Dell'Aera",
@@ -23,12 +38,12 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Security",
     ],
-    cmdclass={'build_ext': build_ext },
-    ext_modules=[Extension("pylibinjection",
-                           sourcefiles,
-                           include_dirs=["submodules/libinjection/c"],
-                           library_dirs=["submodules/libinjection/c"]
-    )
+    cmdclass=cmdclass,
+    ext_modules=[Extension(
+        "pylibinjection",
+        sources=sourcefiles,
+        include_dirs=["submodules/libinjection/c"],
+        library_dirs=["submodules/libinjection/c"])
     ],
     install_requires=open('requirements.txt').read().splitlines(),
 )

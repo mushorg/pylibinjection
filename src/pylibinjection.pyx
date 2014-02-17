@@ -19,7 +19,7 @@
 
 cimport pylibinjection
 
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 
 
 def detect_sqli(linebuf):
@@ -28,11 +28,7 @@ def detect_sqli(linebuf):
     res = dict()
     libinjection_sqli_init(sfp, linebuf, length, 1)
     res["sqli"] = libinjection_is_sqli(sfp)
-    #res["tokens"] = sfp.pat
     res["fprint"] = libinjection_sqli_check_fingerprint(sfp)
     res["reason"] = sfp.reason
-    #res["delim"] = sfp.delim
-    #res["current"] = sfp.current
-    #res["tokenvec"] = sfp.tokenvec
     res["fingerprint"] = sfp.fingerprint
     return res
