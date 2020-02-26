@@ -11,9 +11,17 @@ Requirements
 * Python-dev (Python header files)
 * Optional cython
 
+If you are using python 2.x :
+
 ::
 
     $ apt-get install python-dev
+
+If you are using python 3.x :
+
+::
+
+    $ apt-get install python3-dev
 
 
 Installation
